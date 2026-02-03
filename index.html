@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Andrew X Stewart | Research & Projects</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --accent: #7c3aed;
+            --text-dark: #1e293b;
+            --text-medium: #475569;
+            --text-light: #64748b;
+            --bg-light: #f8fafc;
+            --bg-card: #ffffff;
+            --border: #e2e8f0;
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1);
+            --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1);
+            --radius: 12px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, #f0fdf4 100%);
+            min-height: 100vh;
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header */
+        header {
+            padding: 60px 0 40px;
+            text-align: center;
+        }
+
+        .profile-section {
+            margin-bottom: 30px;
+        }
+
+        .profile-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            margin: 0 auto 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            color: white;
+            font-weight: 700;
+            font-family: 'Playfair Display', serif;
+            box-shadow: var(--shadow-lg);
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 12px;
+            letter-spacing: -0.02em;
+        }
+
+        .tagline {
+            font-size: 1.25rem;
+            color: var(--text-medium);
+            font-weight: 400;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Navigation Links */
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .nav-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 50px;
+            color: var(--text-medium);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .nav-link:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .nav-link svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* Section Styling */
+        section {
+            padding: 60px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.25rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 12px;
+        }
+
+        .section-subtitle {
+            color: var(--text-light);
+            font-size: 1.1rem;
+        }
+
+        /* Paper Tiles Grid */
+        .papers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+        }
+
+        .paper-tile {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 28px;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-sm);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .paper-tile::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+
+        .paper-tile:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-xl);
+            border-color: transparent;
+        }
+
+        .paper-tile:hover::before {
+            transform: scaleX(1);
+        }
+
+        .paper-category {
+            display: inline-block;
+            padding: 4px 12px;
+            background: linear-gradient(135deg, #dbeafe, #ede9fe);
+            color: var(--primary-dark);
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 16px;
+        }
+
+        .paper-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+
+        .paper-venue {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 16px;
+            font-style: italic;
+        }
+
+        .paper-preview {
+            color: var(--text-medium);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .paper-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 20px;
+            color: var(--primary);
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .paper-cta svg {
+            width: 16px;
+            height: 16px;
+            transition: transform 0.2s ease;
+        }
+
+        .paper-tile:hover .paper-cta svg {
+            transform: translateX(4px);
+        }
+
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal {
+            background: var(--bg-card);
+            border-radius: 16px;
+            max-width: 700px;
+            width: 100%;
+            max-height: 85vh;
+            overflow-y: auto;
+            transform: scale(0.9) translateY(20px);
+            transition: var(--transition);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .modal-overlay.active .modal {
+            transform: scale(1) translateY(0);
+        }
+
+        .modal-header {
+            padding: 32px 32px 0;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: none;
+            background: var(--bg-light);
+            color: var(--text-medium);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .modal-close:hover {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+
+        .modal-body {
+            padding: 24px 32px 32px;
+        }
+
+        .modal-category {
+            display: inline-block;
+            padding: 6px 14px;
+            background: linear-gradient(135deg, #dbeafe, #ede9fe);
+            color: var(--primary-dark);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 16px;
+        }
+
+        .modal-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+
+        .modal-venue {
+            color: var(--primary);
+            font-size: 1rem;
+            margin-bottom: 24px;
+            font-weight: 500;
+        }
+
+        .modal-section {
+            margin-bottom: 24px;
+        }
+
+        .modal-section-title {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 8px;
+        }
+
+        .modal-section-content {
+            color: var(--text-medium);
+            line-height: 1.7;
+        }
+
+        .modal-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .modal-tag {
+            padding: 6px 12px;
+            background: var(--bg-light);
+            color: var(--text-medium);
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 32px;
+            flex-wrap: wrap;
+        }
+
+        .modal-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+        }
+
+        .modal-btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+        }
+
+        .modal-btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .modal-btn-secondary {
+            background: var(--bg-light);
+            color: var(--text-medium);
+            border: 1px solid var(--border);
+        }
+
+        .modal-btn-secondary:hover {
+            background: var(--border);
+        }
+
+        /* ERPLAB Section */
+        .project-card {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 32px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            gap: 24px;
+            align-items: flex-start;
+            transition: var(--transition);
+        }
+
+        .project-card:hover {
+            box-shadow: var(--shadow-lg);
+        }
+
+        .project-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #10b981, #059669);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .project-icon svg {
+            width: 32px;
+            height: 32px;
+            color: white;
+        }
+
+        .project-content h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+        }
+
+        .project-content p {
+            color: var(--text-medium);
+            margin-bottom: 16px;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            padding: 8px 16px;
+            background: #eff6ff;
+            border-radius: 6px;
+            transition: var(--transition);
+        }
+
+        .project-link:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.25rem;
+            }
+
+            .section-title {
+                font-size: 1.75rem;
+            }
+
+            .papers-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .project-card {
+                flex-direction: column;
+            }
+
+            .modal-body, .modal-header {
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+
+            .modal-title {
+                font-size: 1.4rem;
+            }
+
+            .nav-links {
+                gap: 12px;
+            }
+
+            .nav-link {
+                padding: 10px 18px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="profile-section">
+                <div class="profile-avatar">A</div>
+                <h1>Andrew X Stewart</h1>
+                <p class="tagline">Researcher exploring the intersection of neuroscience, machine learning, and signal processing</p>
+            </div>
+            <nav class="nav-links">
+                <a href="https://github.com/andrewxstewart" class="nav-link" target="_blank">
+                    <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                    GitHub
+                </a>
+                <a href="AXStewart_cv_2020.pdf" class="nav-link" target="_blank">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                    CV
+                </a>
+            </nav>
+        </header>
+
+        <section id="papers">
+            <div class="section-header">
+                <h2 class="section-title">Paper Highlights</h2>
+                <p class="section-subtitle">Click on a paper to learn more about the research</p>
+            </div>
+            <div class="papers-grid">
+                <div class="paper-tile" onclick="openModal('paper1')">
+                    <span class="paper-category">Machine Learning</span>
+                    <h3 class="paper-title">Single-trial classification of EEG in a visual object task using ICA and machine learning</h3>
+                    <p class="paper-venue">Journal of Neuroscience Methods</p>
+                    <p class="paper-preview">This study demonstrates how Independent Component Analysis (ICA) combined with machine learning algorithms can effectively classify single-trial EEG responses during visual object recognition tasks, advancing brain-computer interface research.</p>
+                    <span class="paper-cta">
+                        Read more
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                    </span>
+                </div>
+                <div class="paper-tile" onclick="openModal('paper2')">
+                    <span class="paper-category">Neuroimaging</span>
+                    <h3 class="paper-title">The LIMO EEG Toolbox: extending the statistical analysis of EEG data to the spectral domain</h3>
+                    <p class="paper-venue">Organization for Human Brain Mapping</p>
+                    <p class="paper-preview">An extension of the LIMO EEG toolbox enabling robust statistical analysis of spectral EEG data, providing researchers with powerful tools for frequency-domain analysis of brain activity.</p>
+                    <span class="paper-cta">
+                        Read more
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                    </span>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects">
+            <div class="section-header">
+                <h2 class="section-title">Open Source Projects</h2>
+                <p class="section-subtitle">Tools and software for the research community</p>
+            </div>
+            <div class="project-card">
+                <div class="project-icon">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                </div>
+                <div class="project-content">
+                    <h3>ERPLAB Neuroimaging Toolbox</h3>
+                    <p>A powerful MATLAB toolbox for ERP (Event-Related Potential) data analysis. ERPLAB extends EEGLAB's capabilities for processing continuous and event-related EEG data, offering a comprehensive suite of tools for artifact correction, filtering, binning, and statistical analysis.</p>
+                    <div class="project-links">
+                        <a href="https://github.com/lucklab/erplab" class="project-link" target="_blank">
+                            <svg fill="currentColor" viewBox="0 0 24 24" width="16" height="16"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                            GitHub Repository
+                        </a>
+                        <a href="https://github.com/lucklab/erplab/wiki" class="project-link" target="_blank">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                            Documentation
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>Made with care by Andrew X Stewart</p>
+        </footer>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+        <div class="modal" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <button class="modal-close" onclick="closeModal()">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="20" height="20"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                </button>
+                <span class="modal-category" id="modalCategory"></span>
+                <h2 class="modal-title" id="modalTitle"></h2>
+                <p class="modal-venue" id="modalVenue"></p>
+            </div>
+            <div class="modal-body">
+                <div class="modal-section">
+                    <h4 class="modal-section-title">Abstract</h4>
+                    <p class="modal-section-content" id="modalAbstract"></p>
+                </div>
+                <div class="modal-section">
+                    <h4 class="modal-section-title">Key Contributions</h4>
+                    <p class="modal-section-content" id="modalContributions"></p>
+                </div>
+                <div class="modal-section">
+                    <h4 class="modal-section-title">Keywords</h4>
+                    <div class="modal-tags" id="modalTags"></div>
+                </div>
+                <div class="modal-actions">
+                    <a href="#" class="modal-btn modal-btn-primary" id="modalLink" target="_blank">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="18" height="18"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                        View Publication
+                    </a>
+                    <button class="modal-btn modal-btn-secondary" onclick="closeModal()">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const papers = {
+            paper1: {
+                category: 'Machine Learning',
+                title: 'Single-trial classification of EEG in a visual object task using ICA and machine learning',
+                venue: 'Journal of Neuroscience Methods, 2014',
+                abstract: 'This research presents a novel approach to classifying single-trial EEG responses during visual object recognition tasks. By combining Independent Component Analysis (ICA) for artifact removal and feature extraction with various machine learning classifiers, we achieved significant improvements in classification accuracy compared to traditional methods.',
+                contributions: 'The study demonstrates that ICA-derived features can substantially improve the discriminability of single-trial EEG data. We systematically compared multiple classification algorithms including Support Vector Machines, Linear Discriminant Analysis, and ensemble methods. Our findings show that the combination of ICA preprocessing with optimized classifiers enables real-time brain-computer interface applications with improved reliability.',
+                tags: ['EEG', 'ICA', 'Machine Learning', 'Brain-Computer Interface', 'Visual Processing', 'Classification'],
+                link: 'https://www.sciencedirect.com/science/article/pii/S0165027014000752'
+            },
+            paper2: {
+                category: 'Neuroimaging',
+                title: 'The LIMO EEG Toolbox: extending the statistical analysis of EEG data to the spectral domain',
+                venue: 'Organization for Human Brain Mapping, 2014',
+                abstract: 'This work extends the capabilities of the LIMO (LInear MOdeling) EEG toolbox to enable robust statistical analysis of spectral EEG data. The extension allows researchers to apply hierarchical linear modeling approaches to frequency-domain representations of brain activity, opening new avenues for investigating oscillatory dynamics.',
+                contributions: 'We developed new modules for the LIMO toolbox that handle spectral decomposition and enable mass-univariate statistical testing across frequency bands. The implementation includes support for time-frequency representations, power spectral density analysis, and inter-trial coherence measures. This extension provides the neuroscience community with open-source tools for principled statistical inference on spectral EEG features.',
+                tags: ['EEG', 'Spectral Analysis', 'Statistical Methods', 'MATLAB', 'Open Source', 'Neuroimaging'],
+                link: 'https://www.researchgate.net/publication/266156413_The_LIMO_EEG_Toolbox_extending_the_statistical_analysis_of_EEG_data_to_the_spectral_domain'
+            }
+        };
+
+        function openModal(paperId) {
+            const paper = papers[paperId];
+            if (!paper) return;
+
+            document.getElementById('modalCategory').textContent = paper.category;
+            document.getElementById('modalTitle').textContent = paper.title;
+            document.getElementById('modalVenue').textContent = paper.venue;
+            document.getElementById('modalAbstract').textContent = paper.abstract;
+            document.getElementById('modalContributions').textContent = paper.contributions;
+            document.getElementById('modalLink').href = paper.link;
+
+            const tagsContainer = document.getElementById('modalTags');
+            tagsContainer.innerHTML = paper.tags.map(tag => `<span class="modal-tag">${tag}</span>`).join('');
+
+            document.getElementById('modalOverlay').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(event) {
+            if (event && event.target !== event.currentTarget) return;
+            document.getElementById('modalOverlay').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
+        });
+    </script>
+</body>
+</html>
